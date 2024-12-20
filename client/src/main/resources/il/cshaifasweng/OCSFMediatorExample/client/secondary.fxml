@@ -5,12 +5,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #8a00c2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.SecondaryController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #8a00c2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.SecondaryController">
    <children>
       <HBox prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="b1" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="W" textFill="WHITE">
+            <Button fx:id="b1" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -18,7 +19,7 @@
                   <Font size="70.0" />
                </font>
             </Button>
-            <Button fx:id="b2" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="A" textFill="WHITE">
+            <Button fx:id="b2" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -26,35 +27,7 @@
                   <Font size="70.0" />
                </font>
             </Button>
-            <Button fx:id="b3" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="I" textFill="WHITE">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="70.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <HBox prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="b4" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" textFill="WHITE">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="70.0" />
-               </font>
-            </Button>
-            <Button fx:id="b5" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="T" textFill="WHITE">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="70.0" />
-               </font>
-            </Button>
-            <Button fx:id="b6" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" textFill="WHITE">
+            <Button fx:id="b3" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -66,7 +39,7 @@
       </HBox>
       <HBox prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="b7" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="..." textFill="WHITE">
+            <Button fx:id="b4" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -74,7 +47,7 @@
                   <Font size="70.0" />
                </font>
             </Button>
-            <Button fx:id="b8" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="..." textFill="WHITE">
+            <Button fx:id="b5" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -82,7 +55,7 @@
                   <Font size="70.0" />
                </font>
             </Button>
-            <Button fx:id="b9" alignment="CENTER" contentDisplay="TOP" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="..." textFill="WHITE">
+            <Button fx:id="b6" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -90,6 +63,57 @@
                   <Font size="70.0" />
                </font>
             </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="b7" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Button>
+            <Button fx:id="b8" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Button>
+            <Button fx:id="b9" alignment="CENTER" contentDisplay="TOP" disable="true" minHeight="190.0" minWidth="190.0" mnemonicParsing="false" onAction="#chooseCell" style="-fx-background-color: #1c1c1c; -fx-opacity: 1;" textFill="WHITE">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="446.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <children>
+            <Button minHeight="45.0" minWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #1c1c1c;" text="Exit Game" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" top="25.0" />
+               </HBox.margin>
+            </Button>
+            <Text fx:id="winnerText" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="249.431640625">
+               <HBox.margin>
+                  <Insets left="100.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
          </children>
       </HBox>
    </children>
