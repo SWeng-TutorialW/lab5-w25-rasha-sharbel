@@ -106,7 +106,7 @@
                   <Insets left="5.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Text fx:id="winnerText" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="249.431640625">
+            <Text fx:id="winnerText" disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="292.6316375732422">
                <HBox.margin>
                   <Insets left="100.0" top="15.0" />
                </HBox.margin>

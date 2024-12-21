@@ -5,18 +5,20 @@ import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Random;
 import il.cshaifasweng.OCSFMediatorExample.entities.Warning;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.SubscribedClient;
 
+
 public class SimpleServer extends AbstractServer {
 	private static ArrayList<SubscribedClient> SubscribersList = new ArrayList<>();
-	private String[][] XO = new String[3][3]; // Matrix to save the X-O cells
+	private int joined = 0;
+	private final String[][] XO = new String[3][3]; // Matrix to save the X-O cells
 	private int turn = 1; // turns counter
 
 	public SimpleServer(int port) {
 		super(port);
-		
+
 	}
 
 	@Override
@@ -41,11 +43,27 @@ public class SimpleServer extends AbstractServer {
 			}
 		}
 		else if(msgString.startsWith("#join")){
-            if(SubscribersList.size() != 2){
-                return;
-            }
-            else{
-                sendToAllClients("The game is ready");
+			joined ++;
+            if(SubscribersList.size() == 2 && joined == 2){
+				// Reset the matrix
+				for (int i = 0; i < XO.length; i++) {         // Loop through rows
+					for (int j = 0; j < XO[i].length; j++) {  // Loop through columns
+						XO[i][j] = null;                      // Set each cell to null
+					}
+				}
+				turn = 1; // Reset turn counter
+				joined = 0; // Reset the number of joined players
+				// Giving X or O to the players randomly by changing their places in the list according to randomIndex
+				Random rand = new Random();
+				int randomIndex = rand.nextInt(2); // Generates a random number: 0 or 1
+
+				// If randomIndex is 0, the object at index 1 goes to index 0, otherwise it goes to index 1
+				if (randomIndex == 0) {
+					SubscribedClient temp = SubscribersList.get(1);
+					SubscribersList.set(1, SubscribersList.get(0));
+					SubscribersList.set(0, temp);
+				}
+				sendToAllClients("The game is ready");
 				handleGameTurns();
             }
         }
@@ -54,10 +72,15 @@ public class SimpleServer extends AbstractServer {
 			for (int i = 0; i < SubscribersList.size(); i++) {
 				SubscribedClient subscribedClient = SubscribersList.get(i);
 				if(subscribedClient.getClient().equals(client)) {
+					int cell = Integer.parseInt(msgString) -1;
+					int col = cell % 3;
+					int row = cell / 3;
 					if(i==0){
+						XO[row][col] = "X";
 						sendToAllClients("Chosen " + msgString + " X");
 					}
 					else if(i==1){
+						XO[row][col] = "O";
 						sendToAllClients("Chosen " + msgString + " O");
 					}
 					handleGameTurns();
@@ -95,32 +118,35 @@ public class SimpleServer extends AbstractServer {
 		String winnerResult;
 
 		try {
-		if(turn >= 5){ // Start check if there is a winner
-			winnerResult = checkWinner();
-			if(winnerResult != null){
-				if(winnerResult.equals("X")){
-					SubscribersList.getFirst().getClient().sendToClient("You Won!");
-					SubscribersList.getFirst().getClient().sendToClient("You Lose!");
-					return;
-				}
-				else{
-					SubscribersList.getFirst().getClient().sendToClient("You Lose!");
-					SubscribersList.getFirst().getClient().sendToClient("You Won!");
-					return;
-				}
+			if(turn >= 5){ // Start check if there is a winner
+				winnerResult = checkWinner();
+				if(winnerResult != null){
+					if(winnerResult.equals("X")){
+						SubscribersList.getFirst().getClient().sendToClient("You Won!");
+						SubscribersList.get(1).getClient().sendToClient("You Lose!");
+                    }
+					else{
+						SubscribersList.getFirst().getClient().sendToClient("You Lose!");
+						SubscribersList.get(1).getClient().sendToClient("You Won!");
+                    }
+                    return;
+                }
 			}
-		}
-		if(turn %2 == 1){
-			clientToPlay = SubscribersList.getFirst().getClient();
-			clientToWait = SubscribersList.get(1).getClient();
-		}
-		else {
-			clientToPlay = SubscribersList.get(1).getClient();
-			clientToWait = SubscribersList.getFirst().getClient();
-		}
-		turn ++;
-			clientToPlay.sendToClient("Play");
-			clientToWait.sendToClient("Wait");
+			if(turn == 10){
+				sendToAllClients("Draw");
+				return;
+			}
+			if(turn %2 == 1){
+				clientToPlay = SubscribersList.getFirst().getClient();
+				clientToWait = SubscribersList.get(1).getClient();
+			}
+			else {
+				clientToPlay = SubscribersList.get(1).getClient();
+				clientToWait = SubscribersList.getFirst().getClient();
+			}
+				turn ++;
+				clientToPlay.sendToClient("Play");
+				clientToWait.sendToClient("Wait");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

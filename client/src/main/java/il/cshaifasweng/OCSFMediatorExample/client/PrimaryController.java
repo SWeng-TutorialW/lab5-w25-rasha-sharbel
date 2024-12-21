@@ -2,6 +2,7 @@ package il.cshaifasweng.OCSFMediatorExample.client;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,6 +28,7 @@ public class PrimaryController {
 
 	@FXML
 	void clientJoinRequest(ActionEvent event) {
+		Platform.runLater(() -> {
 		try {
 			App.setRoot("secondary");
 			SimpleClient.getClient().sendToServer("#join");
@@ -34,6 +36,7 @@ public class PrimaryController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		});
 	}
 
 	@FXML
