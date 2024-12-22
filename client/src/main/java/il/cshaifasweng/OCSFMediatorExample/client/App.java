@@ -26,11 +26,13 @@ public class App extends Application {
         EventBus.getDefault().register(this);
         scene = new Scene(loadFXML("primary"), 600, 700);
         stage.setScene(scene);
+        stage.setTitle("X_O Game");
         stage.show();
+
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot() throws IOException {
+        scene.setRoot(loadFXML("secondary"));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

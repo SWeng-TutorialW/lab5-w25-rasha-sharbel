@@ -38,14 +38,16 @@ public class PrimaryController {
 			String portNum = portField.getText();
 			if (isValidIPv4(ipv4) && isValidPort(portNum)) {
 				try {
+					// Updating the instance variables
 					SimpleClient.port = Integer.parseInt(portNum);
 					SimpleClient.ip = ipv4;
+					// Create client
 					SimpleClient.client = SimpleClient.getClient();
 					SimpleClient.client.openConnection();
 					SimpleClient.getClient().sendToServer("add client");
 					Platform.runLater(() -> {
                         try {
-                            App.setRoot("secondary");
+                            App.setRoot();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -73,5 +75,11 @@ public class PrimaryController {
 	public boolean isValidIPv4(String ip) {
 		String ipv4Pattern = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
 		return ip.matches(ipv4Pattern);
+	}
+
+	@FXML
+	void initialize(){
+		Platform.runLater(() -> {
+		});
 	}
 }

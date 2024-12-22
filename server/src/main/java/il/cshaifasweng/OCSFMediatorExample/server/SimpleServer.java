@@ -80,6 +80,7 @@ public class SimpleServer extends AbstractServer {
 					int cell = Integer.parseInt(msgString) -1;
 					int col = cell % 3;
 					int row = cell / 3;
+					// X for the first player in the list
 					if(i==0){
 						XO[row][col] = "X";
 						sendToAllClients("Chosen " + msgString + " X");
@@ -141,6 +142,7 @@ public class SimpleServer extends AbstractServer {
 				sendToAllClients("Draw");
 				return;
 			}
+			// Send to clients who should play and who should wait
 			if(turn %2 == 1){
 				clientToPlay = SubscribersList.getFirst().getClient();
 				clientToWait = SubscribersList.get(1).getClient();

@@ -75,6 +75,7 @@ public class SecondaryController {
         }
         String[] parts = (obj.toString()).split(" ");
         Platform.runLater(() -> {
+            // Display the X with blue color and O with red color
             switch (parts[1]){
                 case("1"): b1.setText(parts[2]);
                     if(parts[2].equals("X")){
@@ -187,8 +188,10 @@ public class SecondaryController {
         }
         String msg = obj.toString();
         Platform.runLater(() -> {
+            // Post who is he winner
             winnerText.setFont(new Font(50));
             winnerText.setText(msg);
+            // Disable all the nuttons
             for (Button button : buttons) {
                 button.setDisable(true);
             }
@@ -237,6 +240,7 @@ public class SecondaryController {
         EventBus.getDefault().register(this);
         SimpleClient.getClient().sendToServer("#join");
         buttons = List.of(b1, b2, b3, b4, b5, b6, b7, b8, b9);
+        // Display the wait screen
         b1.setText("W");
         b2.setText("A");
         b3.setText("I");
