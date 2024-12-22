@@ -20,20 +20,19 @@ import org.greenrobot.eventbus.Subscribe;
 public class App extends Application {
 
     private static Scene scene;
-    private SimpleClient client;
 
     @Override
     public void start(Stage stage) throws IOException {
-    	EventBus.getDefault().register(this);
-    	client = SimpleClient.getClient();
-    	client.openConnection();
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        EventBus.getDefault().register(this);
+        scene = new Scene(loadFXML("primary"), 600, 700);
         stage.setScene(scene);
+        stage.setTitle("X_O Game");
         stage.show();
+
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot() throws IOException {
+        scene.setRoot(loadFXML("secondary"));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -47,8 +46,10 @@ public class App extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
     	EventBus.getDefault().unregister(this);
-        client.sendToServer("remove client");
-        client.closeConnection();
+        if (SimpleClient.client != null) {
+            SimpleClient.client.sendToServer("remove client");
+            SimpleClient.client.closeConnection();
+        }
 		super.stop();
 	}
     
@@ -56,9 +57,9 @@ public class App extends Application {
     public void onWarningEvent(WarningEvent event) {
     	Platform.runLater(() -> {
     		Alert alert = new Alert(AlertType.WARNING,
-        			String.format("Message: %s\nTimestamp: %s\n",
-        					event.getWarning().getMessage(),
-        					event.getWarning().getTime().toString())
+            String.format("Message: %s\nTimestamp: %s\n",
+            event.getWarning().getMessage(),
+            event.getWarning().getTime().toString())
         	);
         	alert.show();
     	});
@@ -68,5 +69,4 @@ public class App extends Application {
 	public static void main(String[] args) {
         launch();
     }
-
 }
